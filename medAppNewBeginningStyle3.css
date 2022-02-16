@@ -1,0 +1,157 @@
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  width: 100vw;
+}
+
+p {
+  font-size: small;
+}
+.d1 {
+  background: LightSkyBlue;
+  grid-area: demographics;
+  overflow: auto;
+  min-height: 20%;
+}
+.d2 {
+  background: LightSalmon;
+  grid-area: cnote;
+  overflow: auto;
+  min-height: 40%;
+}
+.d3 {
+  background: PaleTurquoise;
+  grid-area: problem-list;
+  overflow: auto;
+  min-height: 25%;
+}
+.d4 {
+  background: LightPink;
+  grid-area: prescriptions;
+  overflow: auto;
+  min-height: 40%;
+}
+.d5 {
+  background: PaleGreen;
+  grid-area: l4notes;
+  overflow: auto;
+  min-height: 40%;
+}
+
+.d6 {
+  background: goldenrod;
+  grid-area: header;
+  overflow: auto;
+  min-height: 10%;
+}
+
+.container {
+  height: 100%;
+  font-size: 40px;
+  width: 100%;
+  background: LightGray;
+  display: grid;
+
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 10% 25% 25% 40%;
+  grid-template-areas:
+    'header header'
+    'demographics cnote'
+    'problem-list cnote '
+    'l4notes prescriptions';
+}
+.sub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 1em);
+}
+.flex-container {
+  flex-direction: row;
+  height: 100%;
+}
+.flex-container1 {
+  flex-direction: row;
+  height: 100%;
+}
+/* .flex-container > div {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+  }*/
+/*.flex-child {
+    display: flex;
+    height: calc(100%-1em);
+  }
+  */
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: calc(100% - 1em);
+}
+.content-1 {
+  flex: 4;
+}
+.past-note {
+  font: 0.25em;
+  border-style: solid;
+  border-width: 2px;
+  display: block;
+}
+.prescription {
+  font: 0.25em;
+  border-style: solid;
+  border-width: 2px;
+  display: block;
+}
+.current-note-sub {
+  font: 0.25em;
+  border-style: solid;
+  border-width: 2px;
+}
+.problem {
+  font: 0.25em;
+  border-style: solid;
+  border-width: 2px;
+  display: block;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  height: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

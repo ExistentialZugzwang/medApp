@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="medAppNewBeginning3.js"></script>
+    <link rel="stylesheet" href="medAppNewBeginningStyle3.css" />
+  </head>
+  <body height: 100%;>
+    <div class="container">
+      <div id="header" class="d6">
+        <button onclick="newPatient()" id="newPatient">+ New Patient</button>
+        <button onclick="localStorage.clear()" id="clearPtData">
+          Clear Patient Data
+        </button>
+        <!--<label for="search">Patient Search</label>-->
+        <input id="search" placeholder="Enter patient name" />
+
+        <button onclick="findPatient()" id="searchButton">search</button>
+      </div>
+      <div id="demographics" class="d1">
+        demographics 
+        <br>
+        <p style = "display: inline" >Patient Name: </p>
+        <p id="nameDisplay" style = "display: inline"></p>
+        <br />
+        <p style = "display: inline" >Patient Age: </p>
+        <p id="ageDisplay" style = "display: inline"></p>
+
+        <!--<label for="search">patient search</label>
+        <input
+          type="search"
+          onsearch="findPatient()"
+          name="search"
+          id="search"
+        />-->
+      </div>
+      <div class="d2 flex-container">
+        current note
+        <button onclick="noteModal(); saveDraft()" id="newNote">+ Add</button>
+        <div class="content" id="currentNote">
+          <div class="current-note-sub content-1" id="subjective0">
+            Subjective:
+          </div>
+          <div class="current-note-sub content-1" id="objective0">
+            Objective:
+          </div>
+          <div class="current-note-sub content-1" id="assessment0">
+            Assessment:
+          </div>
+          <div class="current-note-sub content-1" id="plan0">Plan</div>
+        </div>
+      </div>
+      <div class="d3">
+        Problem-list
+        <button onclick="addProblem()" id="new problem">+ Add</button>
+        <div class="content"></div>
+      </div>
+      <div class="d4 flex-container">
+        prescriptions
+        <button onclick="addPrescription()" id="new prescription">+ Add</button>
+        <div class="content" id="prescriptions"></div>
+      </div>
+      <div class="d5 flex-container">
+        Previous Notes
+        <div class="content" id="pastNotes"></div>
+      </div>
+    </div>
+    <div id="addPrescription" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span onclick="closePrescription()" class="close">&times;</span>
+        <form action="" method="post" id="prescriptionForm">
+          <label for="Drug"> Drug:</label>
+          <input
+            type="text"
+            id="drug"
+            name="drug"
+            type="text"
+            reqired
+            aria-required="true"
+          />
+
+          <label for="Dosage"> Dosage:</label>
+          <input
+            type="number"
+            id="dosage"
+            name="dosage"
+            required
+            aria-required="true"
+          />
+          <label for="measurement">Measurement</label>
+          <select id="measurement" name="measurement">
+            <option value="micrograms">micrograms</option>
+            <option value="milligrams">milligrams</option>
+            <option value="grams">grams</option>
+          </select>
+        </form>
+
+        <button
+          type="submit"
+          value="submit"
+          form="PrescriptionForm"
+          onclick="createPrescription(); closePrescription()"
+        >
+          + Create
+        </button>
+      </div>
+    </div>
+    <div id="noteModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span onclick="closeNote()" class="close">&times;</span>
+        <form
+          action=""
+          method="post"
+          id="noteForm"
+          name="noteform"
+          autocomplete="off"
+          onkeyup="createDraft()"
+          onkeydown="myStopFunction()"
+        >
+          <label for="date"> Date: </label>
+          <input
+            type="number"
+            id="date"
+            name="date"
+            required
+            aria-required="true"
+          />
+          <label for="complaint"> Complaint: </label>
+          <input
+            type="text"
+            id="complaint"
+            name="complaint"
+            required
+            aria-required="true"
+          />
+          <label for="subjective"> Subjective: </label>
+          <input
+            type="text"
+            id="subjective"
+            name="subjective"
+            required
+            aria-required="true"
+          />
+          <label for="objective"> Objective: </label>
+          <input
+            type="text"
+            id="objective"
+            name="objective"
+            required
+            aria-required="true"
+          />
+          <label for="assessment"> Assessment: </label>
+          <input
+            type="text"
+            id="assessment"
+            name="assessment"
+            required
+            aria-required="true"
+          />
+          <label for="plan"> Plan: </label>
+          <input
+            type="text"
+            id="plan"
+            name="plan"
+            required
+            aria-required="true"
+          />
+          <!--
+          <div id="subjective" contenteditable="true">Subjective:</div>
+          <div id="objective" contenteditable="true">Objective:</div>
+          <div id="assessment" contenteditable="true">Assessment:</div>
+          <div id="plan" contenteditable="true">Plan:</div>
+          <label for="subjective">Subjective</label>
+          <textarea id="subjective" name="subjective"></textarea>
+          <label for="objective">Objective</label>
+          <textarea id="objective" name="objective"></textarea>
+          <label for="assessment">Assessment</label>
+          <textarea id="assesment" name="assessment"></textarea>
+          <label for="plan">Plan</label>
+          <textarea id="plan" name="plan"></textarea>
+          -->
+        </form>
+
+        <button onclick="createNote(), closeNote()">+ Create</button>
+      </div>
+    </div>
+    <div id="addProblem" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span onclick="closeProblem()" class="close">&times;</span>
+        <form action="" method="post" id="problemForm">
+          <label for="problem"> Problem:</label>
+          <input
+            type="text"
+            id="problemForm"
+            name="problemForm"
+            reqired
+            aria-required="true"
+          />
+        </form>
+
+        <button
+          type="submit"
+          value="submit"
+          form="problem"
+          onclick="closeProblem()"
+        >
+          + Create
+        </button>
+      </div>
+    </div>
+    <div id="newPtDemographics" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span onclick="closeDemo()" class="close">&times;</span>
+        <form action="" method="post" id="demoForm">
+          <label for="name"> Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            reqired
+            aria-required="true"
+          />
+
+          <label for="age"> Age:</label>
+          <input
+            type="number"
+            id="age"
+            name="age"
+            reqired
+            aria-required="true"
+          />
+        </form>
+
+        <button onclick="createPatient(), closeDemo()">+ Create</button>
+      </div>
+    </div>
+  </body>
+</html>
